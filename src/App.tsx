@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react'
+import Cadastrado from './components/Cadastramento/index'
+import Header from './components/Header'
+import Listagem from './components/Listagem'
+import EstiloGlobal from './styles'
+import Contato from './models/Cadastrados'
 
-function App() {
+const App: React.FC = () => {
+  const [contatos, setContatos] = useState<Contato[]>([])
+
+  const adicionarContato = (contato: Contato) => {
+    setContatos([...contatos, contato])
+  }
+
+  const editarContato = (id: number) => {
+    console.log(`Editar contato com ID: ${id}`)
+  }
+
+  const removerContato = (id: number) => {
+    setContatos(contatos.filter((contato) => contato.id !== id))
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <EstiloGlobal />
+      <Header />
+      <Cadastrado adicionarContato={adicionarContato} />
+      <Listagem
+        contatos={contatos}
+        editarContato={editarContato}
+        removerContato={removerContato}
+      />
+    </>
+  )
 }
 
-export default App;
+export default App
