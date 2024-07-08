@@ -1,11 +1,13 @@
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
+import color from './colors'
 
 const EstiloGlobal = createGlobalStyle`
     *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "DM Sans", sans-serif;
 }
 `
 export const Container = styled.div`
@@ -23,14 +25,15 @@ export const BotaoSalvar = styled.button`
   padding: 8px 32px;
   font-size: 16px;
   font-weight: bold;
-  background-color: #27ae60;
+  background-color: ${color.CorBotaoSalvar};
   color: white;
   border: none;
   border-radius: 10px;
   cursor: pointer;
+  text-transform: uppercase;
 
   &:hover {
-    background-color: #31db79;
+    background-color: ${color.CorBotaoSalvarHover};
   }
 `
 
@@ -38,14 +41,15 @@ export const BotaoCancelar = styled.button`
   padding: 8px 32px;
   font-size: 16px;
   font-weight: bold;
-  background-color: #c0392b;
+  background-color: ${color.CorBotaoRemover};
   color: white;
   border: none;
   border-radius: 10px;
   cursor: pointer;
+  text-transform: uppercase;
 
   &:hover {
-    background-color: #dd4232;
+    background-color: ${color.CorBotaoRemoverHover};
   }
 `
 
@@ -53,14 +57,15 @@ export const BotaoEditar = styled.button`
   padding: 8px 32px;
   font-size: 16px;
   font-weight: bold;
-  background-color: #34495e;
+  background-color: ${color.CorBotaoEditar};
   color: white;
   border: none;
   border-radius: 10px;
   cursor: pointer;
+  text-transform: uppercase;
 
   &:hover {
-    background-color: #4d6c8b;
+    background-color: ${color.CorBotaoEditarHover};
   }
 `
 

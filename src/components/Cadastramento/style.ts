@@ -1,11 +1,12 @@
 import styled from 'styled-components'
+import color from '../../styles/colors'
 
 export const Titulo = styled.h2`
   padding-bottom: 30px;
   text-align: center;
   border-radius: 10px;
-  color: #fbf6f3;
-  background-color: #feb06a;
+  color: ${color.CorTexto};
+  background-color: ${color.CorPrincipal};
 `
 
 export const Formulario = styled.form`
@@ -14,7 +15,7 @@ export const Formulario = styled.form`
   flex-direction: column;
   align-items: center;
   border-radius: 10px;
-  background-color: #feb06a;
+  background-color: ${color.CorPrincipal};
 `
 
 export const Inputs = styled.div`

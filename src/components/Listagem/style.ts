@@ -1,12 +1,13 @@
 import styled from 'styled-components'
+import color from '../../styles/colors'
 
 export const Container = styled.div`
   margin: 10px;
   padding: 10px;
   border-radius: 10px;
-  color: #feb06a;
-  background-color: #fbf6f3;
-  border: 5px solid #feb06a;
+  color: ${color.CorPrincipal};
+  background-color: ${color.CorTexto};
+  border: 5px solid ${color.CorPrincipal};
 `
 
 export const Titulo = styled.h2`
@@ -21,8 +22,12 @@ export const Contato = styled.div`
   margin: 10px;
   border: 4px solid white;
   border-radius: 10px;
-  color: #fbf6f3;
-  background-color: #8ba87c;
+  color: ${color.CorTexto};
+  background-color: ${color.CorContraste};
+
+  &:hover {
+    background-color: ${color.CorContrasteHover};
+  }
 `
 
 export const Botoes = styled.div`
