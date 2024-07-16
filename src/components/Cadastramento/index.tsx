@@ -65,10 +65,9 @@ const Cadastrado = ({ adicionarContato, contatoInicial }: Props) => {
             onChange={(evento) => setEmailNovo(evento.target.value)}
           />
           <S.Input
-            type="number"
             id="contato"
-            placeholder="(00) 00000-0000"
             value={telNovo}
+            placeholder="(00) 00000-0000"
             onChange={(evento) => setTelNovo(evento.target.value)}
           />
         </S.Inputs>
