@@ -1,37 +1,19 @@
-import { useState } from 'react'
+import { Provider } from 'react-redux'
 import Cadastrado from './components/Cadastramento/index'
 import Header from './components/Header'
-import Listagem from './components/Listagem'
 import EstiloGlobal from './styles'
-import Contato from './models/Cadastrados'
+import store from './store'
+import ListaContatos from './components/Listagem/NovoCadastrado/ListaContatos'
 
-const App: React.FC = () => {
-  const [contatos, setContatos] = useState<Contato[]>([])
-
-  const adicionarContato = (contato: Contato) => {
-    setContatos([...contatos, contato])
-  }
-
-  const editarContato = (id: number) => {
-    console.log(`Editar contato com ID: ${id}`)
-  }
-
-  const removerContato = (id: number) => {
-    setContatos(contatos.filter((contato) => contato.id !== id))
-  }
-
-  return (
-    <>
+const App = () => (
+  <>
+    <Provider store={store}>
       <EstiloGlobal />
       <Header />
-      <Cadastrado adicionarContato={adicionarContato} />
-      <Listagem
-        contatos={contatos}
-        editarContato={editarContato}
-        removerContato={removerContato}
-      />
-    </>
-  )
-}
+      <Cadastrado />
+      <ListaContatos />
+    </Provider>
+  </>
+)
 
 export default App

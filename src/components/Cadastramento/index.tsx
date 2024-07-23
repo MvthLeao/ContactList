@@ -1,84 +1,71 @@
-import { useEffect, useState } from 'react'
-import Contato from '../../models/Cadastrados'
+import { useDispatch, useSelector } from 'react-redux'
 import { BotaoCancelar, BotaoSalvar } from '../../styles'
+import { RootReducer } from '../../store'
+import { FormEvent, useState } from 'react'
+import { cadastro } from '../../store/reducers/funcionalidades'
+import Tarefa from '../../models/Tarefa'
 import * as S from './style'
 
-type Props = {
-  adicionarContato: (contato: Contato) => void
-  contatoInicial?: Contato
-}
+const ListaCadastro = () => {
+  const { itens } = useSelector((state: RootReducer) => state.funcionalidades)
 
-const Cadastrado = ({ adicionarContato, contatoInicial }: Props) => {
-  const [nomeNovo, setNomeNovo] = useState(contatoInicial?.nome || '')
-  const [emailNovo, setEmailNovo] = useState(contatoInicial?.email || '')
-  const [telNovo, setTelNovo] = useState(contatoInicial?.telefone || '')
+  const dispatch = useDispatch()
+  const [nome, setNome] = useState('')
+  const [email, setEmail] = useState('')
+  const [tel, setTel] = useState('')
 
-  useEffect(() => {
-    if (contatoInicial) {
-      setNomeNovo(contatoInicial.nome)
-      setEmailNovo(contatoInicial.email)
-      setTelNovo(contatoInicial.telefone)
+  const novoCadastro = (evento: FormEvent) => {
+    evento.preventDefault()
+    const adicionaCadastrado: Tarefa = {
+      id: 0,
+      nome,
+      email,
+      tel
     }
-  }, [contatoInicial])
-
-  const SalvarContato = (e: React.FormEvent) => {
-    e?.preventDefault()
-    if (!nomeNovo || !emailNovo || !telNovo) {
-      alert('Todos os campos são obrigatórios!')
-      return
-    }
-    const novoContato: Contato = {
-      id: Date.now(),
-      nome: nomeNovo,
-      email: emailNovo,
-      telefone: telNovo
-    }
-    adicionarContato(novoContato)
-    setNomeNovo('')
-    setEmailNovo('')
-    setTelNovo('')
+    dispatch(cadastro(adicionaCadastrado))
+    limpar()
   }
 
-  const CancelarContato = () => {
-    setNomeNovo('')
-    setEmailNovo('')
-    setTelNovo('')
+  const limpar = () => {
+    setNome('')
+    setEmail('')
+    setTel('')
   }
 
   return (
-    <>
-      <S.Formulario onSubmit={SalvarContato} onReset={CancelarContato}>
+    <main>
+      <S.Formulario onSubmit={novoCadastro}>
         <S.Titulo>Adicione um novo número:</S.Titulo>
         <S.Inputs>
           <S.Input
             type="text"
-            id="nome"
+            value={nome}
+            onChange={({ target }) => setNome(target.value)}
             placeholder="Nome Completo"
-            value={nomeNovo}
-            onChange={(evento) => setNomeNovo(evento.target.value)}
           />
           <S.Input
             type="text"
-            id="E-mail"
+            value={email}
+            onChange={({ target }) => setEmail(target.value)}
             placeholder="E-mail"
-            value={emailNovo}
-            onChange={(evento) => setEmailNovo(evento.target.value)}
           />
           <S.Input
-            id="contato"
-            value={telNovo}
+            type="Tel"
+            value={tel}
+            onChange={({ target }) => setTel(target.value)}
             placeholder="(00) 00000-0000"
-            onChange={(evento) => setTelNovo(evento.target.value)}
           />
         </S.Inputs>
 
         <S.Botoes className="Botoes">
           <BotaoSalvar type="submit">Salvar</BotaoSalvar>
-          <BotaoCancelar type="reset">Cancelar</BotaoCancelar>
+          <BotaoCancelar onClick={limpar} type="button">
+            Cancelar
+          </BotaoCancelar>
         </S.Botoes>
       </S.Formulario>
-    </>
+    </main>
   )
 }
 
-export default Cadastrado
+export default ListaCadastro

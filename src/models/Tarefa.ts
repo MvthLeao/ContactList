@@ -1,19 +1,14 @@
 class Tarefa {
-  nomeContato: string
-  emailContato: string
-  phoneContato: string
   id: number
+  nome: string
+  email: string
+  tel: string
 
-  constructor(
-    nomeContato: string,
-    emailContato: string,
-    phoneContato: string,
-    id: number
-  ) {
-    this.nomeContato = nomeContato
-    this.emailContato = emailContato
-    this.phoneContato = phoneContato
+  constructor(id: number, nome: string, email: string, tel: string) {
     this.id = id
+    this.nome = nome
+    this.email = email
+    this.tel = tel
   }
 }
 
