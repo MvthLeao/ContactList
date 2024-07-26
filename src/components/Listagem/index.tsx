@@ -33,27 +33,36 @@ const NovoCadastrado: React.FC<NovoCadastradoProps> = ({ contato }) => {
   return (
     <S.Container>
       <S.Contato>
-        <input
-          type="text"
-          placeholder="Nome Completo"
-          disabled={!editando}
-          value={nome}
-          onChange={(evento) => setNome(evento.target.value)}
-        />
-        <input
-          type="email"
-          placeholder="E-mail"
-          disabled={!editando}
-          value={email}
-          onChange={(evento) => setEmail(evento.target.value)}
-        />
-        <input
-          type="tel"
-          placeholder="(99) 99999-9999"
-          disabled={!editando}
-          value={tel}
-          onChange={(evento) => setTel(evento.target.value)}
-        />
+        {editando ? (
+          <S.AreaEdicao
+            type="text"
+            placeholder="Nome Completo"
+            value={nome}
+            onChange={(evento) => setNome(evento.target.value)}
+          />
+        ) : (
+          <S.Registro>{nome}</S.Registro>
+        )}
+        {editando ? (
+          <S.AreaEdicao
+            type="email"
+            placeholder="E-mail"
+            value={email}
+            onChange={(evento) => setEmail(evento.target.value)}
+          />
+        ) : (
+          <S.Registro>{email}</S.Registro>
+        )}
+        {editando ? (
+          <S.AreaEdicao
+            type="tel"
+            placeholder="(99) 99999-9999"
+            value={tel}
+            onChange={(evento) => setTel(evento.target.value)}
+          />
+        ) : (
+          <S.Registro>{tel}</S.Registro>
+        )}
         {editando ? (
           <>
             <BotaoSalvar

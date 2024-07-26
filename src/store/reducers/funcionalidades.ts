@@ -9,9 +9,9 @@ const initialState: AtividadeState = {
   itens: [
     {
       id: 1,
-      nome: 'Matheus Leão Pita ',
-      email: 'mleaopita@outlook.com',
-      tel: '(11)98472 - 0361'
+      nome: 'Nome completo ',
+      email: 'Email principal',
+      tel: 'Contato'
     }
   ]
 }

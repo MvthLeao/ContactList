@@ -29,6 +29,18 @@ export const Contato = styled.div`
   }
 `
 
+export const AreaEdicao = styled.input`
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: ${color.CorTexto};
+`
+
+export const Registro = styled.span`
+  font-size: 12px;
+  color: ${color.CorTexto};
+`
+
 export const Botoes = styled.div`
   display: flex;
   gap: 10px;
